@@ -1,0 +1,1669 @@
+### USER
+crie de um site para uma empresa de reboque com nome de Geupc Reboque que atua na cidade do rio de janeiro e principalmente na zona norte dor rio de janeiro e seus bairros. trabalha com serviço de reboque de moto, reboque carro, carga de bateria e pane seca. crie botão de ligação e botão de whatsapp com o seguinte numero: 21 99645-8786
+
+### ASSISTANT
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geupc Reboque | Reboque 24h - Rio de Janeiro - Zona Norte</title>
+    <link rel="preconnect" href="https://cdn.fontsource.org">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5/400.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5/600.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5/700.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5/800.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1a56db;
+            --primary-dark: #1240a8;
+            --secondary: #f59e0b;
+            --secondary-dark: #d97706;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --success: #22c55e;
+            --whatsapp: #25d366;
+            --call-blue: #1a56db;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: var(--white);
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 0 2rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 70px;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .nav-logo-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--white);
+        }
+
+        .nav-logo-text {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-logo-text span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-btn-call {
+            background: var(--call-blue);
+            color: var(--white);
+        }
+
+        .nav-btn-call:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .nav-btn-whatsapp {
+            background: var(--whatsapp);
+            color: var(--white);
+        }
+
+        .nav-btn-whatsapp:hover {
+            background: #1fb855;
+            transform: translateY(-1px);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--dark) 0%, var(--dark-light) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://image.qwenlm.ai/public_source/cae265b0-7363-4072-91a0-2cfe073a729e/122baaae0-052e-4b0a-a8d9-7f14aa103de4.png') center center/cover no-repeat;
+            opacity: 0.25;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(15,23,42,0.4) 0%, rgba(15,23,42,0.8) 100%);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-content {
+            padding-top: 80px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 6px 16px;
+            border-radius: 50px;
+            color: var(--secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .hero-badge .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+            animation: fadeInUp 0.6s ease 0.1s both;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--secondary), #fbbf24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            line-height: 1.7;
+            animation: fadeInUp 0.6s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease 0.3s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(26, 86, 219, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(26, 86, 219, 0.5);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, var(--whatsapp), #1fb855);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--secondary);
+            color: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 3rem;
+            animation: fadeInUp 0.6s ease 0.4s both;
+        }
+
+        .hero-stat {
+            text-align: left;
+        }
+
+        .hero-stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--secondary);
+        }
+
+        .hero-stat-label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.5);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            padding-top: 80px;
+            animation: fadeInRight 0.8s ease 0.3s both;
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            max-width: 550px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .hero-float-card {
+            position: absolute;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero-float-card.card-1 {
+            bottom: 60px;
+            left: -30px;
+        }
+
+        .hero-float-card.card-2 {
+            top: 120px;
+            right: -20px;
+            animation-delay: 1.5s;
+        }
+
+        .hero-float-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .hero-float-icon.green {
+            background: rgba(34, 197, 94, 0.2);
+            color: var(--success);
+        }
+
+        .hero-float-icon.yellow {
+            background: rgba(245, 158, 11, 0.2);
+            color: var(--secondary);
+        }
+
+        .hero-float-text {
+            color: var(--white);
+        }
+
+        .hero-float-text strong {
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .hero-float-text small {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.75rem;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 2rem;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(26, 86, 219, 0.08);
+            color: var(--primary);
+            padding: 6px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--dark);
+            letter-spacing: -0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title span {
+            color: var(--primary);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Services */
+        .services {
+            background: var(--light);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            border: 1px solid var(--gray-light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: transparent;
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+        }
+
+        .service-icon.blue {
+            background: rgba(26, 86, 219, 0.1);
+            color: var(--primary);
+        }
+
+        .service-icon.yellow {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--secondary-dark);
+        }
+
+        .service-icon.green {
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--success);
+        }
+
+        .service-icon.red {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            font-size: 0.9rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .service-price {
+            display: inline-block;
+            margin-top: 1.2rem;
+            background: rgba(26, 86, 219, 0.08);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        /* Coverage */
+        .coverage {
+            background: var(--white);
+        }
+
+        .coverage-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .coverage-text h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .coverage-text h3 span {
+            color: var(--primary);
+        }
+
+        .coverage-text p {
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .coverage-features {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .coverage-feature {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            background: var(--light);
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .coverage-feature:hover {
+            background: rgba(26, 86, 219, 0.06);
+            transform: translateX(6px);
+        }
+
+        .coverage-feature i {
+            color: var(--primary);
+            font-size: 1.1rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        .coverage-feature span {
+            font-weight: 600;
+            color: var(--dark);
+            font-size: 0.95rem;
+        }
+
+        .coverage-neighborhoods {
+            background: var(--light);
+            border-radius: 20px;
+            padding: 2.5rem;
+            border: 1px solid var(--gray-light);
+        }
+
+        .coverage-neighborhoods h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .coverage-neighborhoods h4 i {
+            color: var(--primary);
+        }
+
+        .neighborhood-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .neighborhood-tag {
+            background: var(--white);
+            border: 1px solid var(--gray-light);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--dark-light);
+            transition: all 0.3s;
+            cursor: default;
+        }
+
+        .neighborhood-tag:hover {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Why Choose Us */
+        .why-us {
+            background: var(--dark);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .why-us::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(26, 86, 219, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .why-us .section-tag {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--secondary);
+        }
+
+        .why-us .section-title {
+            color: var(--white);
+        }
+
+        .why-us .section-subtitle {
+            color: rgba(255,255,255,0.6);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .why-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            transition: all 0.4s;
+        }
+
+        .why-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-6px);
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .why-card-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+        }
+
+        .why-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .why-card p {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+
+        .cta-section::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
+        }
+
+        .cta-container {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta-whatsapp {
+            background: var(--whatsapp);
+            color: var(--white);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn-cta-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        .btn-cta-call {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .btn-cta-call:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(255,255,255,0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: rgba(255,255,255,0.6);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand .nav-logo {
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .footer-col h4 {
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .footer-col ul a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .footer-col ul a:hover {
+            color: var(--secondary);
+            padding-left: 4px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+        }
+
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .float-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            border: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .float-btn:hover {
+            transform: scale(1.1) translateY(-2px);
+        }
+
+        .float-btn-whatsapp {
+            background: var(--whatsapp);
+        }
+
+        .float-btn-whatsapp:hover {
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        .float-btn-call {
+            background: var(--call-blue);
+        }
+
+        .float-btn-call:hover {
+            box-shadow: 0 8px 30px rgba(26, 86, 219, 0.5);
+        }
+
+        .float-btn .tooltip {
+            position: absolute;
+            right: 70px;
+            background: var(--dark);
+            color: var(--white);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s;
+            transform: translateX(10px);
+        }
+
+        .float-btn:hover .tooltip {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .float-btn .tooltip::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 6px solid transparent;
+            border-left-color: var(--dark);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.5); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-image-wrapper {
+                display: none;
+            }
+
+            .hero-description {
+                margin: 0 auto 2.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .coverage-content {
+                grid-template-columns: 1fr;
+            }
+
+            .why-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .nav-cta {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .mobile-menu {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--dark);
+                padding: 2rem;
+                border-top: 1px solid rgba(255,255,255,0.05);
+                z-index: 999;
+            }
+
+            .mobile-menu.active {
+                display: block;
+            }
+
+            .mobile-menu a {
+                display: block;
+                color: rgba(255,255,255,0.75);
+                text-decoration: none;
+                padding: 12px 0;
+                font-size: 1rem;
+                font-weight: 500;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+
+            .mobile-menu .mobile-btns {
+                display: flex;
+                gap: 10px;
+                margin-top: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 4rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .floating-buttons {
+                bottom: 16px;
+                right: 16px;
+            }
+
+            .float-btn {
+                width: 54px;
+                height: 54px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <div class="nav-logo-icon">
+                    <i class="fas fa-truck-pickup"></i>
+                </div>
+                <div class="nav-logo-text">Geupc <span>Reboque</span></div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#cobertura">Cobertura</a></li>
+                <li><a href="#sobre">Sobre Nós</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="tel:+5521996458786" class="nav-btn nav-btn-call">
+                    <i class="fas fa-phone"></i> Ligar
+                </a>
+                <a href="https://wa.me/5521996458786?text=Olá! Preciso de um reboque." class="nav-btn nav-btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#inicio" onclick="closeMobile()">Início</a>
+        <a href="#servicos" onclick="closeMobile()">Serviços</a>
+        <a href="#cobertura" onclick="closeMobile()">Cobertura</a>
+        <a href="#sobre" onclick="closeMobile()">Sobre Nós</a>
+        <div class="mobile-btns">
+            <a href="tel:+5521996458786" class="nav-btn nav-btn-call" style="flex:1;justify-content:center;">
+                <i class="fas fa-phone"></i> Ligar
+            </a>
+            <a href="https://wa.me/5521996458786?text=Olá! Preciso de um reboque." class="nav-btn nav-btn-whatsapp" target="_blank" style="flex:1;justify-content:center;">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero -->
+    <section class="hero" id="inicio">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="pulse-dot"></span>
+                    Atendimento 24 horas
+                </div>
+                <h1>Seu veículo precisa de <span>reboque?</span> Nós resolvemos!</h1>
+                <p class="hero-description">
+                    A Geupc Reboque é a sua solução completa para reboque de carros e motos na Zona Norte do Rio de Janeiro. Atendimento rápido, seguro e com preço justo.
+                </p>
+                <div class="hero-buttons">
+                    <a href="tel:+5521996458786" class="btn btn-primary">
+                        <i class="fas fa-phone-alt"></i> Ligar Agora
+                    </a>
+                    <a href="https://wa.me/5521996458786?text=Olá! Preciso de um reboque." class="btn btn-whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Chamar no WhatsApp
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">24h</div>
+                        <div class="hero-stat-label">Disponível</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">5K+</div>
+                        <div class="hero-stat-label">Atendimentos</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-number">30min</div>
+                        <div class="hero-stat-label">Tempo Médio</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <img src="https://image.qwenlm.ai/public_source/cae265b0-7363-4072-91a0-2cfe073a729e/122baaae0-052e-4b0a-a8d9-7f14aa103de4.png" alt="Geupc Reboque - Serviço de reboque no Rio de Janeiro">
+                <div class="hero-float-card card-1">
+                    <div class="hero-float-icon green">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="hero-float-text">
+                        <strong>100% Seguro</strong>
+                        <small>Seu veículo protegido</small>
+                    </div>
+                </div>
+                <div class="hero-float-card card-2">
+                    <div class="hero-float-icon yellow">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="hero-float-text">
+                        <strong>Atendimento Rápido</strong>
+                        <small>Chegamos em até 30 min</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section services" id="servicos">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-tag">
+                    <i class="fas fa-cogs"></i> Nossos Serviços
+                </div>
+                <h2 class="section-title">Soluções completas para <span>seu veículo</span></h2>
+                <p class="section-subtitle">Oferecemos todos os serviços que você precisa para manter seu veículo rodando ou transportá-lo com segurança.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon blue">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <h3>Reboque de Carro</h3>
+                    <p>Transporte seguro do seu veículo para qualquer destino na Zona Norte do Rio de Janeiro e região. Carroceria plana para total proteção.</p>
+                    <div class="service-price">Consulte valores</div>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon yellow">
+                        <i class="fas fa-motorcycle"></i>
+                    </div>
+                    <h3>Reboque de Moto</h3>
+                    <p>Serviço especializado para motocicletas. Transporte com cuidado e atenção, garantindo que sua moto chegue intacta ao destino.</p>
+                    <div class="service-price">Consulte valores</div>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon green">
+                        <i class="fas fa-car-battery"></i>
+                    </div>
+                    <h3>Carga de Bateria</h3>
+                    <p>Bateria acabou? Nós fazemos a carga no local ou transportamos sua bateria para o local adequado. Serviço rápido e eficiente.</p>
+                    <div class="service-price">Consulte valores</div>
+                </div>
+                <div class="service-card animate-on-scroll">
+                    <div class="service-icon red">
+                        <i class="fas fa-gas-pump"></i>
+                    </div>
+                    <h3>Pane Seca</h3>
+                    <p>Ficou sem combustível? Nós levamos combustível até você ou fazemos o reboque até o posto mais próximo. Atendimento imediato.</p>
+                    <div class="service-price">Consulte valores</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coverage -->
+    <section class="section coverage" id="cobertura">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-tag">
+                    <i class="fas fa-map-marker-alt"></i> Área de Cobertura
+                </div>
+                <h2 class="section-title">Atuamos na <span>Zona Norte</span> do Rio</h2>
+                <p class="section-subtitle">Cobertura ampla em toda a Zona Norte do Rio de Janeiro e bairros vizinhos. Onde você estiver, nós chegamos!</p>
+            </div>
+            <div class="coverage-content">
+                <div class="coverage-text animate-on-scroll">
+                    <h3>Presença forte na <span>Zona Norte</span> carioca</h3>
+                    <p>
+                        A Geupc Reboque é referência em serviço de reboque na Zona Norte do Rio de Janeiro. Nossa equipe conhece cada rua, cada atalho e cada particularidade da região, garantindo que cheguemos ao seu local o mais rápido possível.
+                    </p>
+                    <div class="coverage-features">
+                        <div class="coverage-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Atendimento em toda Zona Norte do RJ</span>
+                        </div>
+                        <div class="coverage-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Tempo médio de chegada: 30 minutos</span>
+                        </div>
+                        <div class="coverage-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Disponível 24 horas, 7 dias por semana</span>
+                        </div>
+                        <div class="coverage-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Equipe experiente e equipamentos modernos</span>
+                        </div>
+                        <div class="coverage-feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Preços competitivos e sem surpresas</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="coverage-neighborhoods animate-on-scroll">
+                    <h4><i class="fas fa-map-marked-alt"></i> Bairros Atendidos</h4>
+                    <div class="neighborhood-tags">
+                        <span class="neighborhood-tag">Tijuca</span>
+                        <span class="neighborhood-tag">Vila Isabel</span>
+                        <span class="neighborhood-tag">Grajaú</span>
+                        <span class="neighborhood-tag">Andaraí</span>
+                        <span class="neighborhood-tag">Maracanã</span>
+                        <span class="neighborhood-tag">São Cristóvão</span>
+                        <span class="neighborhood-tag">Centro</span>
+                        <span class="neighborhood-tag">Copacabana</span>
+                        <span class="neighborhood-tag">Ipanema</span>
+                        <span class="neighborhood-tag">Leblon</span>
+                        <span class="neighborhood-tag">Barra da Tijuca</span>
+                        <span class="neighborhood-tag">Méier</span>
+                        <span class="neighborhood-tag">Cascadura</span>
+                        <span class="neighborhood-tag">Madureira</span>
+                        <span class="neighborhood-tag">Oswaldo Cruz</span>
+                        <span class="neighborhood-tag">Engenho de Dentro</span>
+                        <span class="neighborhood-tag">Abolição</span>
+                        <span class="neighborhood-tag">Penha</span>
+                        <span class="neighborhood-tag">Bonsucesso</span>
+                        <span class="neighborhood-tag">Manguinhos</span>
+                        <span class="neighborhood-tag">Jacarezinho</span>
+                        <span class="neighborhood-tag">Ramos</span>
+                        <span class="neighborhood-tag">Olaria</span>
+                        <span class="neighborhood-tag">Vicente de Carvalho</span>
+                        <span class="neighborhood-tag">Vila da Penha</span>
+                        <span class="neighborhood-tag">Irajá</span>
+                        <span class="neighborhood-tag">Colégio</span>
+                        <span class="neighborhood-tag">Vigário Geral</span>
+                        <span class="neighborhood-tag">Parada de Lucas</span>
+                        <span class="neighborhood-tag">Duque de Caxias</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us -->
+    <section class="section why-us" id="sobre">
+        <div class="section-container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-tag">
+                    <i class="fas fa-star"></i> Por que nos escolher?
+                </div>
+                <h2 class="section-title">A <span style="color: var(--secondary);">Geupc Reboque</span> é a sua melhor escolha</h2>
+                <p class="section-subtitle">Mais do que um serviço de reboque, somos parceiros na sua mobilidade pelo Rio de Janeiro.</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-card animate-on-scroll">
+                    <div class="why-card-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Atendimento 24h</h3>
+                    <p>Estamos disponíveis a qualquer hora do dia ou da noite. Emergências não escolhem horário e nós estamos prontos para atender você.</p>
+                </div>
+                <div class="why-card animate-on-scroll">
+                    <div class="why-card-icon">
+                        <i class="fas fa-tachometer-alt"></i>
+                    </div>
+                    <h3>Rapidez na Chegada</h3>
+                    <p>Com nossa base na Zona Norte, chegamos ao seu local em tempo recorde. Nosso tempo médio de chegada é de apenas 30 minutos.</p>
+                </div>
+                <div class="why-card animate-on-scroll">
+                    <div class="why-card-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3>Preço Justo</h3>
+                    <p>Oferecemos preços competitivos e transparentes. Sem taxas escondidas ou surpresas. Você sabe exatamente quanto vai pagar.</p>
+                </div>
+                <div class="why-card animate-on-scroll">
+                    <div class="why-card-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Equipamentos Modernos</h3>
+                    <p>Nossos veículos e equipamentos são de última geração, garantindo a segurança total do seu veículo durante o transporte.</p>
+                </div>
+                <div class="why-card animate-on-scroll">
+                    <div class="why-card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Equipe Profissional</h3>
+                    <p>Nossa equipe é treinada e experiente, pronta para lidar com qualquer situação de reboque com profissionalismo e cuidado.</p>
+                </div>
+                <div class="why-card animate-on-scroll">
+                    <div class="why-card-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Suporte Completo</h3>
+                    <p>Além do reboque, oferecemos carga de bateria e atendimento para pane seca. Resolvemos tudo o que seu veículo precisar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-container animate-on-scroll">
+            <h2>Precisa de um reboque agora?</h2>
+            <p>Não fique parado! Ligue para nós ou chame no WhatsApp e nossa equipe estará no seu local o mais rápido possível.</p>
+            <div class="cta-buttons">
+                <a href="tel:+5521996458786" class="btn btn-cta-call">
+                    <i class="fas fa-phone-alt"></i> Ligar: (21) 99645-8786
+                </a>
+                <a href="https://wa.me/5521996458786?text=Olá! Preciso de um reboque." class="btn btn-cta-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo">
+                        <div class="nav-logo-icon">
+                            <i class="fas fa-truck-pickup"></i>
+                        </div>
+                        <div class="nav-logo-text">Geupc <span>Reboque</span></div>
+                    </a>
+                    <p>Serviço de reboque profissional na Zona Norte do Rio de Janeiro. Atendemos carros, motos, carga de bateria e pane seca com rapidez e segurança.</p>
+                    <div class="footer-social">
+                        <a href="https://wa.me/5521996458786" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5521996458786" aria-label="Telefone"><i class="fas fa-phone"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Serviços</h4>
+                    <ul>
+                        <li><a href="#servicos">Reboque de Carro</a></li>
+                        <li><a href="#servicos">Reboque de Moto</a></li>
+                        <li><a href="#servicos">Carga de Bateria</a></li>
+                        <li><a href="#servicos">Pane Seca</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#cobertura">Cobertura</a></li>
+                        <li><a href="#sobre">Sobre Nós</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="tel:+5521996458786"><i class="fas fa-phone" style="margin-right:6px;"></i> (21) 99645-8786</a></li>
+                        <li><a href="https://wa.me/5521996458786" target="_blank"><i class="fab fa-whatsapp" style="margin-right:6px;"></i> WhatsApp</a></li>
+                        <li><a href="#cobertura"><i class="fas fa-map-marker-alt" style="margin-right:6px;"></i> Zona Norte - RJ</a></li>
+                        <li><a href="#"><i class="fas fa-clock" style="margin-right:6px;"></i> 24 horas</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 Geupc Reboque. Todos os direitos reservados.</span>
+                <span>Rio de Janeiro - Zona Norte</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="tel:+5521996458786" class="float-btn float-btn-call" aria-label="Ligar">
+            <i class="fas fa-phone-alt"></i>
+            <span class="tooltip">Ligar Agora</span>
+        </a>
+        <a href="https://wa.me/5521996458786?text=Olá! Preciso de um reboque." class="float-btn float-btn-whatsapp" target="_blank" aria-label="WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span class="tooltip">WhatsApp</span>
+        </a>
+    </div>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            const icon = mobileToggle.querySelector('i');
+            if (mobileMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        function closeMobile() {
+            mobileMenu.classList.remove('active');
+            const icon = mobileToggle.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+```
